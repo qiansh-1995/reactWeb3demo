@@ -6,7 +6,8 @@ import {
     useEnsName,
     useBalance 
   } from 'wagmi'
-  import { useContract } from 'wagmi'
+  import { Contract } from '@wagmi/core/internal'
+  import { Crowdsale } from './Crowdsale'
   export function Profile() {
     const { address, connector, isConnected } = useAccount()
     console.log('address:'+address)
@@ -20,10 +21,6 @@ import {
       useConnect()
     const { disconnect } = useDisconnect()
 
-    const contract = useContract({
-      address: '0x1CcdEAe9a852BD7CCC114be3b5739Fb325285D40',
-      abi: ensRegistryABI,
-    })
     if (isConnected) {
       return (
         <div>
@@ -31,6 +28,8 @@ import {
           <h3>balance: {balanceData?.formatted} {balanceData?.symbol}</h3>
            
           <button onClick={disconnect}>Disconnect</button>
+          <Contract/>
+      
         </div>
       )
     }
