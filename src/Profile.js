@@ -6,7 +6,8 @@ import {
     useEnsName,
     useBalance 
   } from 'wagmi'
-  import { Contract } from '@wagmi/core/internal'
+  import { useContract, Provider } from '@wagmi/core';
+  import crowJson from './MyFirstLaunchPad.json'
   import { Crowdsale } from './Crowdsale'
   export function Profile() {
     const { address, connector, isConnected } = useAccount()
@@ -28,7 +29,7 @@ import {
           <h3>balance: {balanceData?.formatted} {balanceData?.symbol}</h3>
            
           <button onClick={disconnect}>Disconnect</button>
-          <Contract/>
+          <Crowdsale/>
       
         </div>
       )

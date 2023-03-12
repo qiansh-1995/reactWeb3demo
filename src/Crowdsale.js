@@ -4,47 +4,46 @@ import {
     useEnsAvatar,
     useEnsName,
     useBalance,
+    useContractRead,
 } from 'wagmi'
-import { Contract } from '@wagmi/core/internal'
+import {  Provider,useWeb3 } from '@wagmi/core';
 import './index.css';
-import styled from 'styled-components';
+
 import crowJson from './MyFirstLaunchPad.json'
 
+
 export function Crowdsale() {
-    const { address, connector, isConnected } = useAccount()
-
-    // console.log('connector:'+JSON.stringify(connector))
-
-    const { data: ensAvatar } = useEnsAvatar({ address })
-    const { data: ensName } = useEnsName({ address })
-    const { data: balanceData } = useBalance({ address, chainId: 97 })
-    console.log(' balanceDate :' + JSON.stringify(balanceData))
-    const { connect, connectors, error, isLoading, pendingConnector } =
-        useConnect()
-
+    //const { account, library, active } = useWeb3();
     const testABI = crowJson.abi;
-    const contractInstance = Contract({
+    const contractInstance = useContractRead({
         address: '0x2d883f94C6BeADB514ABF27460B3AaF1D162a6Ec',
         abi: testABI,
     })
-    console.log('contractInfo:' + JSON.stringify(contractInstance))
-    const addWhitelist = async (addresss) => {
-        return contractInstance.methods.addWhitelist(address).send()
-    }
-    const buyTokens = async (amount) => {
-        return contractInstance.methods.buyTokens(amount).send()
-    }
-    const Claim = async (address) => {
-        return contractInstance.methods.Claim(address).send()
-    }
-        if (isConnected) {
-            return (
-                <div>
 
+    console.log('contract:' + JSON.stringify(contractInstance))
+    async function callMyContractFunction() {
+        const result = await contractInstance.myFunction();
+        console.log(result);
 
-                </div>
-            )
-        }
-    
+        console.log('contractInfo:' + JSON.stringify(contractInstance))
+
+        // const addWhitelist = async (addresss) => {
+        //     return contractInstance.methods.addWhitelist(address).send()
+        // }
+        // const buyTokens = async (amount) => {
+        //     return contractInstance.methods.buyTokens(amount).send()
+        // }
+        // const Claim = async (address) => {
+        //     return contractInstance.methods.Claim(address).send()
+        // }
+
+        return (
+            <div>
+                <button onClick={callMyContractFunction}>Call Function</button>
+
+            </div>
+        )
+
+    }
 
 }
