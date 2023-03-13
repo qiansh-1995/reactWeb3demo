@@ -8,7 +8,8 @@ import {
   } from 'wagmi'
   import { useContract, Provider } from '@wagmi/core';
   import crowJson from './MyFirstLaunchPad.json'
-  import { Crowdsale } from './Crowdsale'
+  import { Crowdsale } from './component/Crowdsale'
+  import {SignMessage } from './component/SignMessage'
   export function Profile() {
     const { address, connector, isConnected } = useAccount()
     console.log('address:'+address)
@@ -30,11 +31,11 @@ import {
            
           <button onClick={disconnect}>Disconnect</button>
           <Crowdsale/>
-      
+        
         </div>
       )
     }
-  
+   // <SignMessage />
     return (
       <div>
         {connectors.map((connector) => (

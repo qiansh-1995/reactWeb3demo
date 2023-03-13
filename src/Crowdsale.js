@@ -1,8 +1,6 @@
 import {
     useAccount,
     useConnect,
-    useEnsAvatar,
-    useEnsName,
     useBalance,
     useContractRead,
 } from 'wagmi'
@@ -10,14 +8,18 @@ import {  Provider,useWeb3 } from '@wagmi/core';
 import './index.css';
 
 import crowJson from './MyFirstLaunchPad.json'
-
+import lockJson from './Lock.json'
 
 export function Crowdsale() {
     //const { account, library, active } = useWeb3();
-    const testABI = crowJson.abi;
+    const testABI = lockJson.abi;
+    const { address } = useAccount();
     const contractInstance = useContractRead({
-        address: '0x2d883f94C6BeADB514ABF27460B3AaF1D162a6Ec',
+        address: '0x5064ea025f86640942ba15b983955c6bDD849156',
         abi: testABI,
+        functionName: 'addWhitelist',
+        args: [address || '0x'],
+        enabled: !!address,
     })
 
     console.log('contract:' + JSON.stringify(contractInstance))
