@@ -12,7 +12,8 @@ import lockJson from './Lock.json'
 
 export function Crowdsale() {
     //const { account, library, active } = useWeb3();
-    const testABI = lockJson.abi;
+      const testABI = lockJson.abi;
+  const testAddress =contractAddress.address
     const { address } = useAccount();
     const contractInstance = useContractRead({
         address: '0x5064ea025f86640942ba15b983955c6bDD849156',
