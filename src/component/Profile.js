@@ -7,11 +7,12 @@ import {
     useBalance 
   } from 'wagmi'
   import { useContract, Provider } from '@wagmi/core';
-  import crowJson from './MyFirstLaunchPad.json'
-  import { Address } from './component/Address'
-  import { PaymentBNB } from './component/PaymentBNB';
-  import { CheckOwner } from './component/CheckOwner';
-  import {SignMessage } from './component/SignMessage'
+ // import { Address } from './Address'
+  import {ReadContract} from './ReadContract'
+  import {SignMessage} from './SignMessage'
+  //import { PaymentBNB } from './PaymentBNB';
+  //import { CheckOwner } from './CheckOwner';
+  //import {SignMessage } from './SignMessage'
   export function Profile() {
     const { address, connector, isConnected } = useAccount()
     console.log('address:'+address)
@@ -32,8 +33,8 @@ import {
           <h3>balance: {balanceData?.formatted} {balanceData?.symbol}</h3>
            
           <button onClick={disconnect}>Disconnect</button>
-          <Address/>
-         
+          <ReadContract/>
+          <SignMessage/>
         
         </div>
       )

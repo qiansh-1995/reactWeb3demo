@@ -2,7 +2,9 @@ import { WagmiConfig, createClient, configureChains } from 'wagmi'
 import {bscTestnet} from 'wagmi/chains'
 import { alchemyProvider } from 'wagmi/providers/alchemy'
 import { publicProvider } from 'wagmi/providers/public'
-import { Profile } from './Profile'
+import { Profile } from './component/Profile'
+//import { Address } from './component/Address'
+
 import { CoinbaseWalletConnector } from 'wagmi/connectors/coinbaseWallet'
 import { InjectedConnector } from 'wagmi/connectors/injected'
 import { MetaMaskConnector } from 'wagmi/connectors/metaMask'
@@ -50,6 +52,7 @@ export function App() {
     <WagmiConfig client={client}>
           <h2>Dapp test</h2>
       <Profile />
+     
     </WagmiConfig>
   )
 }
