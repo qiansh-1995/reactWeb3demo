@@ -8,8 +8,9 @@ import {
   } from 'wagmi'
   import { useContract, Provider } from '@wagmi/core';
  // import { Address } from './Address'
-  import {ReadContract} from './ReadContract'
-  import {SignMessage} from './SignMessage'
+  //import {ReadContract} from './ReadContract'
+  import {AddToList} from './AddToList'
+ //import {SendTransaction} from './SendTransaction'
   //import { PaymentBNB } from './PaymentBNB';
   //import { CheckOwner } from './CheckOwner';
   //import {SignMessage } from './SignMessage'
@@ -33,13 +34,13 @@ import {
           <h3>balance: {balanceData?.formatted} {balanceData?.symbol}</h3>
            
           <button onClick={disconnect}>Disconnect</button>
-          <ReadContract/>
-          <SignMessage/>
-        
+
+          <AddToList/>
         </div>
       )
     }
-   // <SignMessage />
+   //           <ReadContract/>
+  // <SignMessage/>
     return (
       <div>
         {connectors.map((connector) => (
