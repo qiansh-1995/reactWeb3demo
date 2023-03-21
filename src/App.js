@@ -3,8 +3,7 @@ import {bscTestnet} from 'wagmi/chains'
 import { alchemyProvider } from 'wagmi/providers/alchemy'
 import { publicProvider } from 'wagmi/providers/public'
 import { Profile } from './component/Profile'
-import { SendTransaction } from './component/SendTransaction'
-import { MintNFTForm } from './component/MintNFTForm'
+
 //import { Address } from './component/Address'
 
 import { CoinbaseWalletConnector } from 'wagmi/connectors/coinbaseWallet'
@@ -54,8 +53,7 @@ export function App() {
     <WagmiConfig client={client}>
           <h2>Dapp test</h2>
       <Profile />
-      <SendTransaction/>
-      <MintNFTForm/>
+
     </WagmiConfig>
   )
 }

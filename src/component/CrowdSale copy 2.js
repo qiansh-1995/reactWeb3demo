@@ -5,22 +5,28 @@ import {
     useWaitForTransaction,
 } from 'wagmi'
 import { useDebounce } from 'use-debounce'
-import myToken from '../constant/MyToken.json'
+import crowdsale from '../constant/Crowdsale.json'
 import contractAddress from '../constant/address.json'
-const testABI = myToken.abi;
-const testAddress = contractAddress.value2
-export function MintNFTForm() {
-    const [to, setTo] = React.useState('')
-    const [debouncedTo] = useDebounce(to, 500)
+import { utils } from 'ethers'
+import { parse } from '@ethersproject/transactions'
+const testABI = crowdsale.abi;
+const testAddress = contractAddress.value
+export function CrowdSale() {
 
     const [amount, setAmount] = React.useState('')
     const [debouncedAmount] = useDebounce(amount, 500)
+    //const realAmount= debouncedAmount*Math.pow(10,18);
+    
+    console.log(`debouncedAmount: ${debouncedAmount}`)
 
     const { config } = usePrepareContractWrite({
         address: testAddress,
         abi: testABI,
-        functionName: 'transfer',
-        args: [debouncedTo,parseInt(debouncedAmount)],
+        functionName: 'crowdSale',
+        overrides: {
+            value: debouncedAmount ? utils.parseEther(debouncedAmount) : undefined,
+            gasLimit: 290000,
+          },
     })
     const { data, write } = useContractWrite(config)
 
@@ -29,36 +35,31 @@ export function MintNFTForm() {
     })
 
     return (
+        <div>
+            <h2> CrowdSale</h2>
+
         <form
             onSubmit={(e) => {
                 e.preventDefault()
                 write?.()
             }}
         >
-            <label for="tokenId">Token ID</label>
+            <label for="tokenId">amount number:</label>
             <input
-                aria-label="Recipient"
-                onChange={(e) => setTo(e.target.value)}
-                placeholder="0xA0Cf…251e"
-                value={to}
-            />
-            <input
-                aria-label="Amount (ether)"
+                aria-label="Amount (BNB)"
                 onChange={(e) => setAmount(e.target.value)}
-                placeholder="0.05"
+                placeholder="0.01"
                 value={amount}
             />
             <button disabled={!write || isLoading}>
-                {isLoading ? 'Minting...' : 'Mint'}
+                {isLoading ? 'Pending...' : 'Confirm'}
             </button>
             {isSuccess && (
                 <div>
-                    Successfully minted your NFT!
-                    <div>
-                        <a href={`https://etherscan.io/tx/${data?.hash}`}>Etherscan</a>
-                    </div>
+                    Successfully CrowdSale
                 </div>
             )}
         </form>
+        </div>
     )
 }
