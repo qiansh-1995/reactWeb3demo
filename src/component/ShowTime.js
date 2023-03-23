@@ -1,4 +1,4 @@
-import { useAccount, useContractRead } from 'wagmi';
+import { useContractRead } from 'wagmi';
 import * as React from 'react'
 import crowdsale from '../constant/Crowdsale.json'
 import contractAddress from '../constant/address.json'
@@ -6,9 +6,8 @@ const testABI = crowdsale.abi;
 const testAddress = contractAddress.value
 
 export function ShowTime () {
-  const { address } = useAccount();
   const [time, setTime] = React.useState(0);
-  const { data, refetch, isFetching } = useContractRead({
+  const { data } = useContractRead({
     address: testAddress,
     abi: testABI,
     functionName: 'getCurrentTimestamp',

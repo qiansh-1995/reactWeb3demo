@@ -4,7 +4,6 @@ import {
   useDisconnect,
   useBalance
 } from 'wagmi'
-import { useContract, Provider } from '@wagmi/core';
 
 import { AddToList } from './AddToList'
 import { CrowdSale } from './CrowdSale'

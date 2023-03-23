@@ -4,10 +4,8 @@ import {
     useContractWrite,
     useWaitForTransaction,
 } from 'wagmi'
-import { useDebounce } from 'use-debounce'
 import crowdsale from '../constant/Crowdsale.json'
 import contractAddress from '../constant/address.json'
-import { parse } from '@ethersproject/transactions'
 const testABI = crowdsale.abi;
 const testAddress = contractAddress.value
 export function Claim() {
