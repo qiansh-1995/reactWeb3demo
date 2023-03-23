@@ -2,15 +2,11 @@ import {
   useAccount,
   useConnect,
   useDisconnect,
-  useEnsAvatar,
-  useEnsName,
   useBalance
 } from 'wagmi'
 import { useContract, Provider } from '@wagmi/core';
-// import { Address } from './Address'
-//import {ReadContract} from './ReadContract'
+
 import { AddToList } from './AddToList'
-import { SendTransaction } from './SendTransaction'
 import { CrowdSale } from './CrowdSale'
 import { ShowTime } from './ShowTime'
 import { Claim } from './Claim'
