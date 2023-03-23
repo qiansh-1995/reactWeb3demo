@@ -8,7 +8,6 @@ import { useDebounce } from 'use-debounce'
 import crowdsale from '../constant/Crowdsale.json'
 import contractAddress from '../constant/address.json'
 import { utils } from 'ethers'
-import { parse } from '@ethersproject/transactions'
 const testABI = crowdsale.abi;
 const testAddress = contractAddress.value
 export function CrowdSale() {
